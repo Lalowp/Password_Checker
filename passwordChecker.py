@@ -2,7 +2,7 @@ import requests
 import hashlib
 
 try:
-    with open('password.txt', mode='r') as password:
+    with open('.txt', mode='r') as password: # Add the name of your file
         text = password.readlines()
 except FileNotFoundError as error:
     print('Check the file path')
@@ -33,12 +33,12 @@ def main(args):
     for password in args:
         count = pwned_api_check(password)
         password_len  = len(password)
-        passwrod_star = password_len* '*' 
-        if count:
-            print(f'{passwrod_star} was found {count} times, you should change it')
+        password_star = password_len* '*' # Here, you can avoid showing the password by deleting the password_star parameter
+        if count:                         # In case you will like to see the stars, then leave it like this
+            print(f'{password_star} was found {count} times, you should change it')
         else:
-            print(f'{passwrod_star} was not found. Use it!')
+            print(f'{password_star} was not found. Use it!')
 
 if __name__ == '__main__':
-    main(text)
+    main(text) 
 
